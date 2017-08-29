@@ -1,4 +1,3 @@
-import { Injectable } from '../decorators/Injectable';
 import { Controller } from '../decorators/Controller';
 import { HttpGet, HttpPost } from '../decorators/HttpMethod';
 import { Request, Response } from 'express';
