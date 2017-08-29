@@ -3,6 +3,7 @@ import { Inject } from './decorators/Inject';
 import { HttpContainer } from './HttpContainer';
 import * as express from 'express';
 import { createServer, Server } from 'http';
+import * as bodyParser from 'body-parser';
 
 class App {
   @Inject(RootController)
@@ -15,8 +16,11 @@ class App {
 
   constructor() {
     this._express = express();
-    this._router = express.Router();
     this._server = createServer(this._express);
+
+    this._router = express.Router();
+    this._router.use(bodyParser.urlencoded({ extended: false }));
+    this._router.use(bodyParser.json());
     
     this._container = new HttpContainer();
     this._container.register(this._router);
